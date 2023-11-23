@@ -27,21 +27,21 @@ def current_weather(lat, lon):
     Описание функции, входных и выходных переменных
     """
     token = '54d73608-c8dd-4c98-b18f-d9a5056525ab'
-    url = f"https://api.weather.yandex.ru/v2/forecast?lat={lat}&lon={lon}"
+    url = f"https://api.weather.yandex.ru/v2/informers?lat={lat}&lon={lon}"
     headers = {"X-Yandex-API-Key": f"{token}"}
     response = requests.get(url, headers=headers)
     data = response.json()
 
     result = {
-        'city': data['geo_object']['locality']['name'],
-        'time': datetime.fromtimestamp(data['fact']['uptime']).strftime("%H:%M"),
+        # 'city': data['geo_object']['locality']['name'],
+        # 'time': datetime.fromtimestamp(data['fact']['uptime']).strftime("%H:%M"),
         'temp': data['fact']['temp'],
         'feels_like_temp': data['fact']['feels_like'],
         'pressure': data['fact']['pressure_mm'],
         'humidity': data['fact']['humidity'],
         'wind_speed': data['fact']['wind_speed'],
         'wind_gust': data['fact']['wind_gust'],
-        'wind_dir': DIRECTION_TRANSFORM.get(data['fact']['wind_dir']),
+        # 'wind_dir': DIRECTION_TRANSFORM.get(data['fact']['wind_dir']),
     }
     return result
 
